@@ -11,3 +11,11 @@ def index(request):
         'job_postings': active_postings
     }
     return render(request, 'job_board/index.html', context)
+
+
+def job_detail(request, job_id):
+    job_posting = JobPosting.objects.get(id=job_id)
+    context = {
+        'posting': job_posting
+    }
+    return render(request, 'job_board/detail.html', context)

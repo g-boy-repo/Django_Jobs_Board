@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, get_object_or_404
 
 from .models import JobPosting
 
@@ -14,7 +14,7 @@ def index(request):
 
 
 def job_detail(request, job_id):
-    job_posting = JobPosting.objects.get(id=job_id)
+    job_posting = get_object_or_404(JobPosting, id=job_id, is_active=True)
     context = {
         'posting': job_posting
     }
